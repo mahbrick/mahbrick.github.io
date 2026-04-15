@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>BRIK 418</title>
+    <link rel="stylesheet" href="errorStyles.css">
+</head>
+<body>
+    <div class="content" role="main">
+        <a href="#" id="teapotLink">
+            <img src="assets/418.png" alt="418 Code" id="teapotImg" />
+        </a>
+        <p>teapot :3</p>
+        <p>...bored?</p>
+        <p>play this game instead</p>
+        <embed src="https://www.gameszap.com/files/swf/bloxorz-1665492300.swf" width="650" height="355">
+            <p>If your browser does not support Flash. Try <a href="https://ruffle.rs/">Ruffle</a>!</p>
+        </embed>
+    </div>
+
+    <audio id="glassBreak" preload="auto">
+        <source src="assets/159197__justbrando__glass-breaking.mp3" type="audio/mpeg">>
+    </audio>
+
+    <script>
+        (function() {
+            const teapotLink = document.getElementById('teapotLink');
+            const teapotImg = document.getElementById('teapotImg');
+            const glassSound = document.getElementById('glassBreak');
+            
+            let isBroken = false;
+            const originalSrc = 'assets/418.png';
+            const brokenSrc = 'assets/ohno.png';
+            const originalHref = 'https://www.google.com/teapot';
+            
+            const preload = new Image();
+            preload.src = brokenSrc;
+            
+            function breakTeapot(e) {
+                e.preventDefault();
+                
+                if (isBroken) return;
+                
+                // Change image
+                teapotImg.src = brokenSrc;
+                teapotImg.alt = 'Broken 418 Code';
+                
+                glassSound.currentTime = 0;
+                glassSound.play().catch(err => {
+                    console.log('dude what am i supposed to :sob:');
+                });
+                teapotLink.href = '#';
+                teapotLink.title = 'You broke it...';
+                
+                teapotImg.style.transition = 'transform 0.1s';
+                teapotImg.style.transform = 'rotate(2deg)';
+                setTimeout(() => {
+                    teapotImg.style.transform = 'rotate(-15deg)';
+                    setTimeout(() => {
+                        teapotImg.style.transform = 'rotate(0deg)';
+                    }, 50);
+                }, 50);
+                
+                isBroken = true;
+            }
+            
+            teapotLink.addEventListener('click', breakTeapot);
+        })();
+    </script>
+</body>
+</html>
