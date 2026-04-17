@@ -1,2 +1,3 @@
-# epic website 
-only i can edit this website :)
+# archived brik website
+me move to nekoweb cuz cool 
+page stay up
